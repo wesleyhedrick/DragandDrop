@@ -1,32 +1,43 @@
-//Drag
+let fill = document.querySelector('.fill');
+let empties = document.querySelectorAll('.empty');
 
+// Fill listeners
+/*fill.addEventListener('dragstart', dragStart);*/
+fill.addEventListener('dragend', dragEnd);
 
-
-//Drop
-//Make inner html of the drop location equal to the html of the dragged element. 
-   //copy the html of the dragged element
-
-let productName = '';
-
-function copyHTML(){
-    
-    $('.product').mousedown(function(e){
-        productName = $(e.currentTarget).text();
-        console.log(productName)
-    })
+// Loop through empty boxes and add listeners
+for (const empty of empties) {
+  empty.addEventListener('dragover', dragOver);
+  empty.addEventListener('dragenter', dragEnter);
+  empty.addEventListener('dragleave', dragLeave);
+  empty.addEventListener('drop', dragDrop);
 }
 
-function pasteHTML(){
-    
-    $('.palletspace').on('drop', function(e){
-        let droppedText = $(e.currentTarget)
-        console.log(`you dropped something`)
-        droppedText.text(productName);
-    }); 
+// Drag Functions
+
+function dragStart() {
+  this.className += ' hold';
+  setTimeout(() => (this.className = 'invisible'), 0);
 }
 
-$(function(){
-    copyHTML();
-    pasteHTML();
-})
+function dragEnd() {
+  this.className = 'fill';
+}
 
+function dragOver(e) {
+  e.preventDefault();
+}
+
+function dragEnter(e) {
+  e.preventDefault();
+  this.className += ' hovered';
+}
+
+function dragLeave() {
+  this.className = 'empty';
+}
+
+function dragDrop() {
+  this.className = 'empty';
+  this.append(fill);
+}
