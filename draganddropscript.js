@@ -1,43 +1,36 @@
-let fill = document.querySelector('.fill');
-let empties = document.querySelectorAll('.empty');
-
-// Fill listeners
-/*fill.addEventListener('dragstart', dragStart);*/
-fill.addEventListener('dragend', dragEnd);
-
-// Loop through empty boxes and add listeners
-for (const empty of empties) {
-  empty.addEventListener('dragover', dragOver);
-  empty.addEventListener('dragenter', dragEnter);
-  empty.addEventListener('dragleave', dragLeave);
-  empty.addEventListener('drop', dragDrop);
+//What happens when button is pressed
+let product = "";
+let loadInProgress = ""
+function selectProduct() {
+    $('button').click(function(e){
+        let btn = $(e.currentTarget); 
+        let otherBtn = $('button').not(btn);
+        btn.not('.clear').toggleClass('on');
+        otherBtn.removeClass('on');
+        product = btn.text();
+        console.log(product);
+    })
 }
 
-// Drag Functions
+function placeProduct() {
+    $('.palletspace').on('mousedown', function(e){
+        let pltspc = $(e.currentTarget);
+        product !=='Clear'? pltspc.text(product) : pltspc.text();
+        loadInProgress = pltspc.parent().attr('class');
+        console.log(loadInProgress+'>td');
+    })
 
-function dragStart() {
-  this.className += ' hold';
-  setTimeout(() => (this.className = 'invisible'), 0);
 }
 
-function dragEnd() {
-  this.className = 'fill';
+function clearFloor() {
+    $('.clear').click(function(){
+        $('.'+loadInProgress+'>td').text('');
+    });
 }
+$(selectProduct);
+$(placeProduct);
+$(clearFloor)
 
-function dragOver(e) {
-  e.preventDefault();
-}
+//What happens when product is dropped
 
-function dragEnter(e) {
-  e.preventDefault();
-  this.className += ' hovered';
-}
-
-function dragLeave() {
-  this.className = 'empty';
-}
-
-function dragDrop() {
-  this.className = 'empty';
-  this.append(fill);
-}
+//What happens when user taps on pallet space
