@@ -5,7 +5,7 @@ function selectProduct() {
     $('button').click(function(e){
         let btn = $(e.currentTarget); 
         let otherBtn = $('button').not(btn);
-        btn.not('.clear').toggleClass('on');
+        btn.not('.clear').not('.clearall').toggleClass('on');
         otherBtn.removeClass('on');
         product = btn.text();
         console.log(product);
@@ -27,9 +27,17 @@ function clearFloor() {
         $('.'+loadInProgress+'>td').text('');
     });
 }
+
+function clearAll() {
+    $('.clearall').click(function(){
+        $('.palletspace').text('');
+    })
+}
+
 $(selectProduct);
 $(placeProduct);
-$(clearFloor)
+$(clearFloor);
+$(clearAll); 
 
 //What happens when product is dropped
 

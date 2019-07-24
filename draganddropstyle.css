@@ -104,7 +104,7 @@ button:hover {
     border: 3px dashed blue;
 }
 
-.clear { 
+.clear, .clearall { 
     width: 150px;
     height: 75px;
     border: 1px solid purple;
