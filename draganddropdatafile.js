@@ -1,0 +1,20 @@
+const PRODUCTS = {
+    'LC5': 'C',
+    'MA5': "A",
+    LC2: "LC2",
+    LC15: "LC15",
+    LC55: "LC55",
+    MA15: "MA15",
+    MA55: "MA55",
+    DEB12: "BAG DE 12",
+    DEE25: "BAG DE 25",
+    DEE50: "BAG DE 50",
+    SS50: "Solar Salt",
+    PS50: "Pool Salt",
+    SC50: "Bicarb",
+    SA50: "Ash",
+    CC50: "Cal Flake",
+    CCP50: "Cal Pellet",
+    MA4: "Acid Case",
+    P50: "Peroxide"
+}

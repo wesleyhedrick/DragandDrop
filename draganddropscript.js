@@ -9,13 +9,14 @@ function selectProduct() {
         otherBtn.removeClass('on');
         product = btn.text();
         console.log(product);
+        console.log(PRODUCTS[product])
     })
 }
 
 function placeProduct() {
     $('.palletspace').on('mousedown', function(e){
         let pltspc = $(e.currentTarget);
-        product !=='Clear'? pltspc.text(product) : pltspc.text();
+        product !=='Clear'? pltspc.text(PRODUCTS[product]) : pltspc.text();
         loadInProgress = pltspc.parent().attr('class');
         console.log(loadInProgress+'>td');
     })
